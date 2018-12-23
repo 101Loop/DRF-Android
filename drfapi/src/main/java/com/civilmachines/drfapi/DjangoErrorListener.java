@@ -31,31 +31,31 @@ import org.json.JSONObject;
 
 public abstract class DjangoErrorListener implements Response.ErrorListener {
 
-    abstract void onNetworkError(String response);
-    abstract void onAuthFailureError(String response);
-    abstract void onTimeoutError(String response);
-    abstract void onNoConnectionError(String response);
-    abstract void onParseError(String response);
+    public abstract void onNetworkError(String response);
+    public abstract void onAuthFailureError(String response);
+    public abstract void onTimeoutError(String response);
+    public abstract void onNoConnectionError(String response);
+    public abstract void onParseError(String response);
 
-    abstract void onMethodNotAllowedError(String message);
-    abstract void onNotFoundError(String message);
+    public abstract void onMethodNotAllowedError(String message);
+    public abstract void onNotFoundError(String message);
 
-    abstract void onBadRequestError(String message);
-    abstract void onBadRequestError(JSONObject response);
+    public abstract void onBadRequestError(String message);
+    public abstract void onBadRequestError(JSONObject response);
 
-    abstract void onForbiddenError(String message);
+    public abstract void onForbiddenError(String message);
 
-    abstract void onUnprocessableEntityError(String message);
-    abstract void onUnprocessableEntityError(JSONObject response);
+    public abstract void onUnprocessableEntityError(String message);
+    public abstract void onUnprocessableEntityError(JSONObject response);
 
-    abstract void onUnsupportedMediaTypeError(String message);
+    public abstract void onUnsupportedMediaTypeError(String message);
 
-    abstract void onNonJsonError(String response);
-    abstract void onDefaultJsonError(JSONObject response);
-    abstract void onDefaultHTMLError(String response);
+    public abstract void onNonJsonError(String response);
+    public abstract void onDefaultJsonError(JSONObject response);
+    public abstract void onDefaultHTMLError(String response);
 
-    abstract void onServerError(String response);
-    abstract void onDefaultError(String response);
+    public abstract void onServerError(String response);
+    public abstract void onDefaultError(String response);
 
     /**
      * Parses the error based on StatusCode

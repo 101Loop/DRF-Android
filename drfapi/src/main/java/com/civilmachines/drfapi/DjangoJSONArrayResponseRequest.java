@@ -70,9 +70,15 @@ public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray>
     }
 
     /**
-     * Constructor which defaults to <code>GET</code> if <code>jsonRequest</code> is
-     * <code>null</code>, <code>POST</code> otherwise.
+     * Constructor without method. Decides method on the basis of jsonRequest body
      *
+     * @param url API Endpoint
+     * @param jsonRequest body
+     * @param listener response listener
+     * @param errorListener error listener (must implement {@link DjangoErrorListener}
+     * @param context context for accessing SharedPreference
+     *
+     * @author Himanshu Shankar (https://himanshus.com)
      */
     public DjangoJSONArrayResponseRequest(String url,
                                           @Nullable JSONObject jsonRequest,
