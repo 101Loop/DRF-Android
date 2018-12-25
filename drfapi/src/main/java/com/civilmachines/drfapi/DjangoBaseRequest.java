@@ -19,7 +19,6 @@ package com.civilmachines.drfapi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonRequest;
@@ -44,7 +43,6 @@ public abstract class DjangoBaseRequest<T> extends JsonRequest<T> {
     private Context cont;
 
     // Change these static variable to define how token is stored in Android app and sent on server
-    public static String key_token = "token";
     public static String keyAuthorizationHeader = "Authorization";
     public static String keyTokenPrefix = "Bearer ";
 
@@ -79,18 +77,17 @@ public abstract class DjangoBaseRequest<T> extends JsonRequest<T> {
      * Sets Content-Type to application/json
      * Checks for presence of token in SharedPreferenceAdapter and sets it.
      * @return Map<String, String> a Map of headers
-     * @throws AuthFailureError from super
      * @author Himanshu Shankar (https://himanshus.com)
      */
     @Override
-    public Map<String, String> getHeaders() throws AuthFailureError {
-        SharedPreferenceAdapter shaPre;
+    public Map<String, String> getHeaders() {
+        UserSharedPreferenceAdapter shaPre;
 
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        shaPre = new SharedPreferenceAdapter(cont);
+        shaPre = new UserSharedPreferenceAdapter(cont);
 
-        String token = shaPre.getString(key_token);
+        String token = shaPre.getToken();
 
         if(token != null){
             headers.put(keyAuthorizationHeader, keyTokenPrefix + token);

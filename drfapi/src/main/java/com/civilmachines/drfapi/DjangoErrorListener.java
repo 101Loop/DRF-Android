@@ -32,7 +32,9 @@ import org.json.JSONObject;
 public abstract class DjangoErrorListener implements Response.ErrorListener {
 
     public abstract void onNetworkError(String response);
+
     public abstract void onAuthFailureError(String response);
+
     public abstract void onTimeoutError(String response);
     public abstract void onNoConnectionError(String response);
     public abstract void onParseError(String response);
@@ -84,12 +86,15 @@ public abstract class DjangoErrorListener implements Response.ErrorListener {
                 switch (statusCode) {
                     case 400: {
                         onBadRequestError("Server configuration has some error.");
+                        break;
                     }
                     case 404: {
                         onNotFoundError("API Endpoint not found.");
+                        break;
                     }
                     default: {
                         onDefaultHTMLError(response);
+                        break;
                     }
                 }
             } else {
@@ -103,23 +108,26 @@ public abstract class DjangoErrorListener implements Response.ErrorListener {
                             // Method not allowed error
                             onMethodNotAllowedError(error_response.optString("detail",
                                     "Invalid method used in request."));
+                            break;
                         }
                         case 404: {
                             // Object not found error
                             onNotFoundError(error_response.optString("detail",
                                     "Object with provided detail does not exists."));
+                            break;
                         }
                         case 400: {
                             // Bad request error
-                            if (error_response.optString("detail") != null)
+                            if (error_response.optString("detail", null) != null)
                                 onBadRequestError(error_response.optString("detail"));
                             else
                                 onBadRequestError(error_response);
+                            break;
                         }
                         case 403 | 401: {
-                            // Must trigger a logout signal
                             onForbiddenError(error_response.optString("detail",
                                     "You're not allowed to make this request."));
+                            break;
                         }
                         case 422: {
                             // Similar use case as of bad request, used in drf_user
@@ -130,16 +138,19 @@ public abstract class DjangoErrorListener implements Response.ErrorListener {
                                 onUnprocessableEntityError(error_response.optString("detail"));
                             else
                                 onUnprocessableEntityError(error_response);
+                            break;
 
                         }
                         case 415: {
                             // Request sent in unsupported media type, such as text
                             onUnsupportedMediaTypeError(error_response.optString("detail",
                                     "Request sent in invalid format."));
+                            break;
                         }
                         default: {
                             // Default case scenario
                             onDefaultJsonError(error_response);
+                            break;
                         }
                     }
                 } catch (JSONException ex) {
@@ -159,8 +170,15 @@ public abstract class DjangoErrorListener implements Response.ErrorListener {
             onNoConnectionError(response);
         else if (error instanceof NetworkError)
             onNetworkError(response);
-        else if( error instanceof AuthFailureError)
-            onAuthFailureError(response);
+        else if (error instanceof AuthFailureError) {
+            JSONObject error_response;
+            try {
+                error_response = new JSONObject(response);
+                onForbiddenError(error_response.optString("detail", "Couldn't perform task because of permission error."));
+            } catch (JSONException ex) {
+                onAuthFailureError(response);
+            }
+        }
         else
             onDefaultError(response);
     }

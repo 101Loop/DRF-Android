@@ -28,8 +28,8 @@ import java.util.Map;
 
 public class SharedPreferenceAdapter {
 
-    static private SharedPreferences main;
-    static private SharedPreferences.Editor edit;
+    SharedPreferences main;
+    private SharedPreferences.Editor edit;
 
     /**
      * This function initializes the shared preference with Activity
@@ -44,22 +44,11 @@ public class SharedPreferenceAdapter {
     }
 
     public SharedPreferenceAdapter(Activity act, String FileName){
-        main =  act.getSharedPreferences(FileName, Activity.MODE_PRIVATE);
+        main = act.getSharedPreferences(FileName, Activity.MODE_PRIVATE);
     }
 
     public SharedPreferenceAdapter(Context cont, String AdapterName){
-        main =  cont.getSharedPreferences(AdapterName, Context.MODE_PRIVATE);
-    }
-
-   /* public SharedPreferenceAdapter(BusinessRecyclerView_Adapter businessRecyclerView_adapter) {
-        main = businessRecyclerView_adapter.onClick(View v);
-    }
-*/
-
-    public boolean onLoggedIn(String val){
-        edit = main.edit();
-        edit.putString("login", val);
-        return edit.commit();
+        main = cont.getSharedPreferences(AdapterName, Context.MODE_PRIVATE);
     }
 
     public int getInt(String key){
@@ -68,10 +57,6 @@ public class SharedPreferenceAdapter {
 
     public String getString(String key){
         return main.getString(key, null);
-    }
-
-    public String isLoggedIn(){
-        return main.getString("token", null);
     }
 
     public boolean saveData(String key, String val){
