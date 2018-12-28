@@ -25,11 +25,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
+import java.util.Set;
 
 public class SharedPreferenceAdapter {
 
-    SharedPreferences main;
-    private SharedPreferences.Editor edit;
+    public SharedPreferences main;
+    public SharedPreferences.Editor edit;
 
     /**
      * This function initializes the shared preference with Activity
@@ -51,12 +52,36 @@ public class SharedPreferenceAdapter {
         main = cont.getSharedPreferences(AdapterName, Context.MODE_PRIVATE);
     }
 
+    public SharedPreferences.Editor getEditor() {
+        return edit;
+    }
+
+    public SharedPreferences sharedPreference() {
+        return main;
+    }
+
     public int getInt(String key){
         return main.getInt(key, 0);
     }
 
     public String getString(String key){
         return main.getString(key, null);
+    }
+
+    public boolean getBoolean(String key){
+        return main.getBoolean(key, false);
+    }
+
+    public Set<String> getStringSet(String key){
+        return main.getStringSet(key, null);
+    }
+
+    public float getFloat(String key){
+        return main.getFloat(key, 0);
+    }
+
+    public long getLong(String key){
+        return main.getLong(key, 0);
     }
 
     public boolean saveData(String key, String val){
@@ -74,6 +99,24 @@ public class SharedPreferenceAdapter {
     public boolean saveData(String key, long val){
         edit = main.edit();
         edit.putLong(key, val);
+        return edit.commit();
+    }
+
+    public boolean saveData(String key, boolean val){
+        edit = main.edit();
+        edit.putBoolean(key, val);
+        return edit.commit();
+    }
+
+    public boolean saveData(String key, Float val){
+        edit = main.edit();
+        edit.putFloat(key, val);
+        return edit.commit();
+    }
+
+    public boolean saveData(String key, Set<String> val){
+        edit = main.edit();
+        edit.putStringSet(key, val);
         return edit.commit();
     }
 

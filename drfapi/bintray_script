@@ -64,6 +64,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = bintrayRepo
+        userOrg = "civilmachines"
         name = bintrayName
         desc = libraryDescription
         websiteUrl = siteUrl
@@ -78,3 +79,8 @@ bintray {
         }
     }
 }
+
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
