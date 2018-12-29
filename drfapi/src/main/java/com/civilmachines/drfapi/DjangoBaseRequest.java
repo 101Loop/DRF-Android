@@ -56,6 +56,7 @@ public abstract class DjangoBaseRequest<T> extends JsonRequest<T> {
      *   indicates no parameters will be posted along with request.
      * @param listener Listener to receive the JSON response
      * @param errorListener Error listener, or null to ignore errors.
+     * @param context Context for accessing SharedPreference (used in headers)
      *
      * @author Himanshu Shankar (https://himanshus.com)
      * @author Divya Tiwari (https://divyatiwari.me)
@@ -76,7 +77,7 @@ public abstract class DjangoBaseRequest<T> extends JsonRequest<T> {
     /**
      * Sets Content-Type to application/json
      * Checks for presence of token in SharedPreferenceAdapter and sets it.
-     * @return Map<String, String> a Map of headers
+     * @return Map a Map of headers
      * @author Himanshu Shankar (https://himanshus.com)
      */
     @Override

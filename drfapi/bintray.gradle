@@ -1,3 +1,6 @@
+// Took help from following link
+// Source: https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13
+
 group = publishedGroupId
 version = libraryVersion
 
@@ -24,6 +27,11 @@ install {
                     name developerName
                     email developerEmail
                 }
+                developer {
+                    id 'divyatiwari5'
+                    name "Divya Tiwari"
+                    email "me@divyatiwari.me"
+                }
             }
             scm {
                 connection gitUrl
@@ -49,7 +57,15 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-artifacts {
+// Adding dependencies library for javadoc
+// Source: https://stackoverflow.com/a/34572606/5638941
+afterEvaluate {
+    javadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompiler.classpath.files
+    })
+}
+
+artifacts{
     archives javadocJar
     archives sourcesJar
 }
@@ -79,8 +95,3 @@ bintray {
         }
     }
 }
-
-tasks.withType(Javadoc) {
-    enabled = false
-}
-
