@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 1
-        versionName "0.1b"
+        versionCode 2
+        versionName "2018.12 - Stable"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -48,7 +48,7 @@ ext {
     siteUrl = 'https://github.com/101Loop/drf-android/'
     gitUrl = 'https://github.com/101Loop/drf-android.git'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '0.0.2'
 
     developerId = 'iamhssingh'
     developerName = 'Himanshu Shankar'
