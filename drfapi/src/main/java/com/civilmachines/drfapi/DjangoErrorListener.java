@@ -131,7 +131,7 @@ public abstract class DjangoErrorListener implements Response.ErrorListener {
     public abstract void onBadRequestError(JSONObject response);
 
     /**
-     * Function should handle 403 & 401 Error code i.e. Forbidden & Unauthorized
+     * Function should handle 403 | 401 Error code i.e. Forbidden | Unauthorized
      * It is expected from programmer to logout user, if logged in, and clear
      * all private data in this function.
      *
