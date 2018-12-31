@@ -36,8 +36,8 @@ import java.io.UnsupportedEncodingException;
  * Creates request on Django APIs where response is in JSONObject format and request is also in
  * JSONObject format
  *
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwari (https://divyatiwari.me)
+ * @author <a href="https://himanshus.com" target="_blank">Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public class DjangoJSONObjectRequest extends DjangoBaseRequest<JSONObject> {
 
@@ -53,8 +53,6 @@ public class DjangoJSONObjectRequest extends DjangoBaseRequest<JSONObject> {
      * @param errorListener Error listener, or null to ignore errors.
      * @param context A {@link Activity} to handle create {@link SharedPreferenceAdapter} object for token.
      *
-     * @author Himanshu Shankar (https://himanshus.com)
-     * @author Divya Tiwari (https://divyatiwari.me)
      */
     public DjangoJSONObjectRequest(int method,
                                    String url,
@@ -77,7 +75,6 @@ public class DjangoJSONObjectRequest extends DjangoBaseRequest<JSONObject> {
      * @param errorListener error listener (must implement {@link DjangoErrorListener}
      * @param context context for accessing SharedPreference
      *
-     * @author Himanshu Shankar (https://himanshus.com)
      */
     public DjangoJSONObjectRequest(String url,
                                    @Nullable JSONObject jsonRequest,
@@ -96,8 +93,6 @@ public class DjangoJSONObjectRequest extends DjangoBaseRequest<JSONObject> {
      * @return Response.success with JSONObject format of response or
      *         Response.error when response in non-JSONObject format
      *
-     * @author Himanshu Shankar (https://himanshus.com)
-     * @author Divya Tiwari (https://divyatiwari.me)
      */
     @Override
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {

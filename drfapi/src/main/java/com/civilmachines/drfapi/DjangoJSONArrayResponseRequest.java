@@ -36,8 +36,8 @@ import java.io.UnsupportedEncodingException;
  * Creates request on Django APIs where response is in JSONArray format while request is in
  * JSONObject format
  *
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwari (https://divyatiwari.me)
+ * @author <a href="https://himanshus.com" target="_blank">Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray> {
     /**
@@ -52,8 +52,6 @@ public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray>
      * @param errorListener Error listener, or null to ignore errors.
      * @param context A {@link Activity} to handle create {@link SharedPreferenceAdapter} object for token.
      *
-     * @author Himanshu Shankar (https://himanshus.com)
-     * @author Divya Tiwari (https://divyatiwari.me)
      */
     public DjangoJSONArrayResponseRequest(int method,
                                           String url,
@@ -78,7 +76,6 @@ public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray>
      * @param errorListener error listener (must implement {@link DjangoErrorListener}
      * @param context context for accessing SharedPreference
      *
-     * @author Himanshu Shankar (https://himanshus.com)
      */
     public DjangoJSONArrayResponseRequest(String url,
                                           @Nullable JSONObject jsonRequest,
@@ -97,8 +94,6 @@ public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray>
      * @return Response.success with JSONArray format of response or
      *         Response.error when response in non-JSONArray format
      *
-     * @author Himanshu Shankar (https://himanshus.com)
-     * @author Divya Tiwari (https://divyatiwari.me)
      */
     @Override
     protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {

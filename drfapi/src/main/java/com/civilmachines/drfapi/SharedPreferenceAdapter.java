@@ -30,8 +30,8 @@ import java.util.Set;
 /**
  * An adapter to handle Shared Preference in a uniform manner
  *
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwari (https://divyatiwari.me)
+ * @author <a href="https://himanshus.com" target="_blank">Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public class SharedPreferenceAdapter {
 

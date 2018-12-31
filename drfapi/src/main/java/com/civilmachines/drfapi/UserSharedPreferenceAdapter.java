@@ -16,8 +16,8 @@ import android.support.annotation.NonNull;
  *     UserSharedPreferenceAdapter.keyToken = "userToken";
  * </pre>
  *
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwari (https://divyatiwari.me)
+ * @author <a href="https://himanshus.com" target="_blank">Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public class UserSharedPreferenceAdapter extends SharedPreferenceAdapter {
     public static String userPrivate = "user_private";

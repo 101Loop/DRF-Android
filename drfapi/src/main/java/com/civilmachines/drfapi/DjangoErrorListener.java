@@ -30,7 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * An abstract class that implements {@link Response.ErrorListener} and handles
+ * An abstract class that implements {@link com.android.volley.Response.ErrorListener} and handles
  * error commonly raised by Django REST Framework based REST APIs.
  *
  * This class has 18 abstract functions that are required to be implemented.
@@ -38,8 +38,8 @@ import org.json.JSONObject;
  * onErrorResponse function parses an error from API and invokes appropriate
  * function.
  *
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwar (https://divyatiwari.me)
+ * @author <a href="https://himanshus.com" target="_blank">Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public abstract class DjangoErrorListener implements Response.ErrorListener {
 

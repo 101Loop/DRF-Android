@@ -4,23 +4,24 @@ import org.json.JSONObject;
 
 
 /**
- * A class that implements all abstract method of DjangoErrorListener via a
- * blank body.
+ * A class that implements all abstract method of DjangoErrorListener with blank
+ * function body. It requires user to override and implement the same in activity
+ * where Django Request is being created. This way, user has access to all activity/
+ * context based variables.
  *
  * Programmer is expected to use this in a following manner:
- * <pre>
- *     {@code
- *     new DefaultAPIErrorListener() {
- *          @Override
- *          public void onNetworkError(String response){
- *              // Do something
- *              // Use variable present in activity/class such as alert dialog etc.
- *          }
- *     }
- *     }
- * </pre>
- * @author Himanshu Shankar (https://himanshus.com)
- * @author Divya Tiwari (https://divyatiwari.me)
+ *
+ * <pre>{@code
+ *     new DefaultAPIErrorListener(){
+ *         public void onNetworkError(String response){
+ *             // Do something
+ *             // Use variable present in activity/class such as alert dialog etc.
+ *         }
+ *     };
+ * }</pre>
+ *
+ * @author <a href=https://himanshus.com target=_blank>Himanshu Shankar</a>
+ * @author <a href="https://divyatiwari.me" target="_blank">Divya Tiwari</a>
  */
 public class DefaultAPIErrorListener extends DjangoErrorListener {
 
