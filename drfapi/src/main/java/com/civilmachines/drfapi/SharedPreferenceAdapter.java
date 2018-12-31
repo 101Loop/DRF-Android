@@ -27,6 +27,12 @@ import org.json.JSONObject;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * An adapter to handle Shared Preference in a uniform manner
+ *
+ * @author Himanshu Shankar (https://himanshus.com)
+ * @author Divya Tiwari (https://divyatiwari.me)
+ */
 public class SharedPreferenceAdapter {
 
     public SharedPreferences main;

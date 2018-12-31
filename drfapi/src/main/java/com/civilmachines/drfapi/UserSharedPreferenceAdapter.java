@@ -4,6 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+/**
+ * An adapter that handles a Shared Preference associated with a user.
+ * This adapter creates and accesses a Shared Preference that contains only
+ * user related data.
+ *
+ * Programmer can change Shared Preference filename or token keyword. To do same
+ * add a similar code in main activity:
+ * <pre>
+ *     UserSharedPreferenceAdapter.userPrivate = "user";
+ *     UserSharedPreferenceAdapter.keyToken = "userToken";
+ * </pre>
+ *
+ * @author Himanshu Shankar (https://himanshus.com)
+ * @author Divya Tiwari (https://divyatiwari.me)
+ */
 public class UserSharedPreferenceAdapter extends SharedPreferenceAdapter {
     public static String userPrivate = "user_private";
     public static String keyToken = "token";

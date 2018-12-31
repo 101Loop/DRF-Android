@@ -29,34 +29,174 @@ import com.android.volley.TimeoutError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * An abstract class that implements {@link Response.ErrorListener} and handles
+ * error commonly raised by Django REST Framework based REST APIs.
+ *
+ * This class has 18 abstract functions that are required to be implemented.
+ *
+ * onErrorResponse function parses an error from API and invokes appropriate
+ * function.
+ *
+ * @author Himanshu Shankar (https://himanshus.com)
+ * @author Divya Tiwar (https://divyatiwari.me)
+ */
 public abstract class DjangoErrorListener implements Response.ErrorListener {
 
+    /**
+     * Function should handle error: onNetworkError
+     * This error is thrown by Android when some network error occurs.
+     *
+     * @param response message String that is provided in error by Android
+     */
     public abstract void onNetworkError(String response);
 
+    /**
+     * Function should handle onAuthFailure Error
+     * This is thrown by Android.
+     * Although server based auth error (403/401) are also categorized
+     * as onAuthFailureError by Android, those errors invoke
+     * onForbiddenError.
+     *
+     * @param response message String that is provided in error by Android
+     *                 or sent by server
+     */
     public abstract void onAuthFailureError(String response);
 
+    /**
+     * Function should handle timeout Error
+     * This is thrown by Android.
+     *
+     * @param response message String that is provided in error by Android
+     */
     public abstract void onTimeoutError(String response);
+
+    /**
+     * Function should handle no connection error thrown by Android when due to
+     * any circumstance, connection can't be established.
+     *
+     * @param response message String that is provided in error by Android
+     */
     public abstract void onNoConnectionError(String response);
+
+    /**
+     * Function should handle parse error thrown by Android when server sends a
+     * successful status code but the response is not in proper format.
+     *
+     * While making a DELETE request with Django, expect this error to be
+     * thrown as the server sends a blank body.
+     *
+     * @param response message String that is sent by server
+     */
     public abstract void onParseError(String response);
 
+    /**
+     * Function should handle 415 Error code i.e. Method Not Allowed
+     *
+     * @param message extracted from "detail" key in JSON Body
+     */
     public abstract void onMethodNotAllowedError(String message);
+
+    /**
+     * Function should handle 404 Error code i.e. Not Found
+     *
+     * @param message extracted from "detail" key in JSON Body or
+     *                a default string
+     */
     public abstract void onNotFoundError(String message);
 
+    /**
+     * Function should handle 400 Error code i.e. Bad Request
+     * This occurs at various occasions such as:
+     * 1. Server is not configured properly (ALLOWED_HOST incorrect)
+     * 2. Client based error
+     *
+     * @param message extracted from "detail" key in JSON Body or
+     *                a default string
+     */
     public abstract void onBadRequestError(String message);
+
+    /**
+     * Function should handle 400 Error code i.e. Bad Request
+     * This function is called only when client has not sent a proper
+     * JSON Request.
+     *
+     * @param response raw JSONObject sent from server. This needs
+     *                 to be parsed here as it may contain error in
+     *                 following format:
+     *                 <pre>
+     *                     {@code {"field": ["message"], ...}}
+     *                 </pre>
+     */
     public abstract void onBadRequestError(JSONObject response);
 
+    /**
+     * Function should handle 403 & 401 Error code i.e. Forbidden & Unauthorized
+     * It is expected from programmer to logout user, if logged in, and clear
+     * all private data in this function.
+     *
+     * @param message extracted from "detail" key in JSON Body or
+     *                a default string
+     */
     public abstract void onForbiddenError(String message);
 
+    /**
+     * Function should handle 422 Error code i.e. Unprocessable Entity
+     *
+     * @param message extracted from "detail" or "data" key in JSON Body
+     */
     public abstract void onUnprocessableEntityError(String message);
+
+    /**
+     * Function should handle 422 Error code i.e. Unprocessable Entity
+     *
+     * @param response raw JSONObject sent from server
+     */
     public abstract void onUnprocessableEntityError(JSONObject response);
 
+    /**
+     * Function should handle 415 Error code i.e. Unsupported Media Type
+     *
+     * @param message extracted from "detail" or "data" key in JSON Body
+     */
     public abstract void onUnsupportedMediaTypeError(String message);
 
+    /**
+     * Function should handle a non JSON Error which is neither in JSON
+     * Format nor in HTML Format
+     *
+     * @param response raw String body of response
+     */
     public abstract void onNonJsonError(String response);
+
+    /**
+     * Function should handle JSON Error which is not categorized into
+     * any of above thrown errors
+     *
+     * @param response raw JSON body of response
+     */
     public abstract void onDefaultJsonError(JSONObject response);
+
+    /**
+     * Function should handle a error in HTML Format
+     *
+     * @param response raw String body of response which is in HTML format
+     */
     public abstract void onDefaultHTMLError(String response);
 
+    /**
+     * Function should handle a server error i.e. error response having a
+     * 5xx error code
+     *
+     * @param response raw String body of response
+     */
     public abstract void onServerError(String response);
+
+    /**
+     * Function should handle an non categorized error
+     *
+     * @param response raw String body of response
+     */
     public abstract void onDefaultError(String response);
 
     /**

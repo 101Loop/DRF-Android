@@ -43,7 +43,7 @@ public class DjangoJSONArrayResponseRequest extends DjangoBaseRequest<JSONArray>
     /**
      * Creates a new JSONObject request from Django REST Framework APIs
      *
-     * Based on {@link com.android.volley.toolbox.JsonObjectRequest}
+     * Based on {@link com.android.volley.toolbox.JsonArrayRequest}
      * @param method the HTTP method to use
      * @param url URL to fetch the JSON from
      * @param jsonRequest A {@link JSONObject} to post with the request. Null is allowed and
