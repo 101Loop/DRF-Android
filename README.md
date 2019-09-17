@@ -15,7 +15,7 @@ dependencies {
 ```
 
 ## Usage
-Register your Volley `SingletonFile` to your `AndroidManifest.xml'
+Register your Volley `SingletonFile` to your `AndroidManifest.xml'. You can copy the sample code from (VolleySingleton Gist)[https://gist.github.com/iamvivekkaushik/b0608ff18902696051856c41f3e7e332]
 ```
 <application
   android:name=".VolleySingleton"
